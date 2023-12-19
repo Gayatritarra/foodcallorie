@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Food Recognition with Calaries Prediction</h1>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <form method="POST" enctype="multipart/form-data" action="/predict">
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputImage" name="file" accept="image/*" required onchange="updateFileName()">
+                            <label class="custom-file-label" for="inputImage">Choose an Image</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Predict</button>
+                </form>
+                <div class="mt-3">
+                    {% if prediction_result %}
+                        <div class="alert alert-success" role="alert">
+                            <strong>Predicted Class:</strong> {{ prediction_result }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery scripts at the end of the body -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript to update the selected file name -->
+    <script>
+        function updateFileName() {
+            var input = document.getElementById('inputImage');
+            var fileName = input.files[0].name;
+            var label = document.querySelector('.custom-file-label');
+            label.textContent = fileName;
+        }
+    </script>
+</body>
+</html>
