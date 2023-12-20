@@ -10,7 +10,7 @@ import tempfile
 app = Flask(__name__)
 
 # Load the trained scikit-learn model
-with open('Model.pkl', 'rb') as f:
+with open('Model1.pkl', 'rb') as f:
     model = pickle.load(f)
 
 def preprocess_test_image(image_path, target_size=(128, 128)):
